@@ -35,14 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>User Signup - EcoElite</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../login.css">
-    <style>
-        body {
-            background: linear-gradient(to bottom right, #1abc9c, #1abc9c);
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-        }
-       
-    </style>
 </head>
 <body>
 <div class="signup-container">

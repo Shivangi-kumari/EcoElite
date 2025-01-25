@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../login.css">
     <style>
         body {
-            background: linear-gradient(to bottom right, #1abc9c, #1abc9c);
+            background: linear-gradient(to bottom right, white, white);
             font-family: 'Poppins', sans-serif;
             color: #333;
         }
