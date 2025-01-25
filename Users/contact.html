@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Waste Collection</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #mapid {
+            height: 400px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Service Provider Login</a>
+    </nav>
+    <header>
+        <h1>Schedule Waste Collection</h1>
+    </header>
+    <main>
+        <form id="schedule-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="waste-type">Waste Type</label>
+                <select id="waste-type" name="waste-type" required>
+                    <option value="recycling">Recycling</option>
+                    <option value="organic">Organic</option>
+                    <option value="general">General</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <div id="mapid"></div> 
+                <input type="hidden" id="location-coordinates" name="location-coordinates">
+                <p id="map-info">Click on the map to select a location.</p>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Waste Management Platform</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('mapid').setView([51.505, -0.09], 13); // Default center and zoom
+            let marker;
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Handle map click to set marker
+            map.on('click', function(e) {
+                const latlng = e.latlng;
+                if (marker) {
+                    marker.setLatLng(latlng);
+                } else {
+                    marker = L.marker(latlng).addTo(map);
+                }
+                document.getElementById('location-coordinates').value = `${latlng.lat},${latlng.lng}`;
+                document.getElementById('map-info').textContent = `Selected location: Latitude ${latlng.lat}, Longitude ${latlng.lng}`;
+            });
+
+            // Handle form submission
+            const scheduleForm = document.getElementById('schedule-form');
+            scheduleForm.addEventListener('submit', handleFormSubmit);
+
+            function handleFormSubmit(e) {
+                e.preventDefault();
+                
+                const scheduleData = {
+                    name: scheduleForm.name.value,
+                    email: scheduleForm.email.value,
+                    phone: scheduleForm.phone.value,
+                    wasteType: scheduleForm['waste-type'].value,
+                    location: document.getElementById('location-coordinates').value
+                };
+
+                // Send data to the PHP script using fetch
+                fetch('submit_request.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(scheduleData)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Show success message
+                    scheduleForm.reset();
+                    if (marker) {
+                        marker.remove(); // Clear marker after submission
+                    }
+                    document.getElementById('map-info').textContent = 'Click on the map to select a location.';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting your request. Please try again.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
