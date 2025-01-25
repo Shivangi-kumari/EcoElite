@@ -1,58 +1,170 @@
-* {
+/* General Styles */
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-body {
-    background-color: #f9f9f9;
-    color: #333;
-}
-nav {
-    background-color: #2c3e50;
+    font-family: Arial, sans-serif;
+    height: 100%;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
     display: flex;
-    justify-content: space-around;
-    padding: 15px 0;
-}
-nav a {
-    color: #ecf0f1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #003d29;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar .nav-links li a {
     text-decoration: none;
-    font-size: 16px;
+    color: white;
     font-weight: 500;
     transition: color 0.3s;
-}
-nav a:hover {
-    color: #1abc9c;
-}
- 
-.e-aware {
-    background-color: #ecf0f1;
+  }
+  
+  .navbar .nav-links li a:hover {
+    color: #c3e6cb;
+  }
+  
+  /* Dashboard Styles */
+  .dashboard {
+    background: url('./images/dashboard.jpg') no-repeat center center/cover;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 30px;
-    margin: 50px auto;
-    border-radius: 15px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    width: 80%;
-}
-.e-aware .headings {
-    color: #1abc9c;
-    font-size: 1.5rem;
-}
+    color: white;
+  }
+  
+  .dashboard .content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    width: 30%;
 
-.content-section {
-    width: 55%;
-}
-.image-section img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-footer {
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dashboard .content p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-btn {
+    padding: 0.8rem 2rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: #218838;
+  }
+
+  .content-section {
+    padding: 3rem 2rem;
     text-align: center;
-    padding: 20px 0;
-    background-color: #2c3e50;
-    color: #ecf0f1;
-}
-footer p {
-    margin: 0;
-}
+    color: #333;
+    background-color: #003d29;
+    color: white;
+  }
+  
+  .content-section .title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  .content-section .content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  .content-section h3 {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    color: #0056b3;
+  }
+  
+  
+  /* Modal Styles */
+  .login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+   background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .modal-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .modal-btn:hover {
+    background-color:  #218838;
+  }
+  
+  .close-btn {
+    padding: 0.5rem 1rem;
+    background-color:  #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background-color:  #218838;
+  }
+  
