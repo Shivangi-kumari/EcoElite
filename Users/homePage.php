@@ -14,8 +14,8 @@ $user_id = $_SESSION['user_id'];
 include("../connection.php"); 
 
 // Query to fetch counts of accepted and pending requests
-$query_accepted = "SELECT COUNT(*) AS count FROM requests WHERE user_id = '$user_id' AND status = 'Accepted'";
-$query_pending = "SELECT COUNT(*) AS count FROM requests WHERE user_id = '$user_id' AND status = 'Pending'";
+$query_accepted = "SELECT COUNT(*) AS count FROM requests WHERE id = '$user_id' AND status = 'Accepted'";
+$query_pending = "SELECT COUNT(*) AS count FROM requests WHERE id = '$user_id' AND status = 'Pending'";
 
 $result_accepted = mysqli_query($connect, $query_accepted);
 $result_pending = mysqli_query($connect, $query_pending);
