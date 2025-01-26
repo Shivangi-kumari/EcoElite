@@ -47,7 +47,7 @@ $pending_count = ($result_pending && mysqli_num_rows($result_pending) > 0) ? mys
     </ul>
 </nav>
     <div class="container">
-        <h2 class="text-center" style="color:white; margin-bottom: 30px; font-weight:700;">Welcome to User Dashboard</h2>
+        <h2 class="text-center">Welcome to User Dashboard</h2>
 
         <div class="card-container">
             <!-- Accepted Card -->
@@ -79,7 +79,7 @@ $pending_count = ($result_pending && mysqli_num_rows($result_pending) > 0) ? mys
 
     </div>
     <footer>
-        <p>&copy; 2024 Waste Management Platform</p>
+        <p>&copy; 2025 Waste Management Platform</p>
     </footer>
 </body>
 </html>

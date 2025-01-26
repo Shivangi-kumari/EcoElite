@@ -1,10 +1,30 @@
-.request-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
+*{
+    margin:0;
+    padding:0
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background-image: url('../images/recycle.jpg'); /* Correct way to add background image */
+    background-size: cover; /* Ensures the image covers the whole screen */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+/* Navbar Styles */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+background-color: #003d29;
+color: white;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .navbar .nav-links {
@@ -26,41 +46,77 @@
 
 
 /* homepage*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.text-center {
+    margin-top: 50px;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
 .card-container {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .card {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 400px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    padding:50px;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 45%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+.request-card, .message-card {
+    font-size: 1.5rem;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.request-card h4, .message-card p, .request-card p {
+    margin: 0 0 10px;
+}
 
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-
-.btn-accept {
-    background-color: #28a745;
-    color: white;
+.card-header{
+    font-size: 2rem;
+    font-weight: 500;
 }
+
+.btn-accept, .btn-delete {
+    background-color: #28a745;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .btn-delete {
-    background-color: #dc3545;
-    color: white;
+    background-color: rgb(247, 28, 28)
+}
+
+.btn-accept:hover {
+    background-color: #28a745;
 }
 
 footer {
@@ -69,5 +125,6 @@ footer {
     width:100%;
     text-align: center;
     padding: 10px;
-    margin-bottom: 10px;
+    position: fixed;
+    bottom: 0;
 }

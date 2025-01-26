@@ -63,7 +63,11 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
 }
 
-
+.text-center {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
 .card-container {
     display: flex;
     justify-content: center;
