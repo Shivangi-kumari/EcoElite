@@ -49,17 +49,17 @@ Project Documentation
 [documentation.pdf](https://github.com/user-attachments/files/18548697/documentation.pdf)
 Screenshots
 1. Homepage
-   ![homepage](https://github.com/user-attachments/assets/67973474-356d-4448-859d-627ff5fd6a90)
+   [homepage](https://github.com/user-attachments/assets/67973474-356d-4448-859d-627ff5fd6a90)
 2. User Dashboard![user_dashboard](https://github.com/user-attachments/assets/8711f997-065e-48ea-a18e-af7a9ca76ebf)
-3. Service Provider Panel
-![Service Provider Panel](Add screenshot link here)
-Caption: A panel for service providers to accept and manage garbage pickup requests.
+3.Admin Panel [Admin Panel]![admin panel echoelite](https://github.com/user-attachments/assets/4880d998-4629-4388-8b64-b68d028d4979)
 
+   
 Diagrams
 1. Workflow
 2. ![workflow](https://github.com/user-attachments/assets/a5ec69bd-9fb9-4f5c-a4e8-2ea960977752)
 3. schematic
-4. [schematic.pdf](https://github.com/user-attachments/files/18548739/schematic.pdf)
+4. ![schematic](https://github.com/user-attachments/assets/f5e87ca7-2c35-40d2-bf2e-24b623fbcea5)
+
 Project Demo
 
 Video:
