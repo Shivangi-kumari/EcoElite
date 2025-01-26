@@ -1,6 +1,9 @@
 Project Name: EcoElite 🍃🍀
+
 Team Name: CodeSprint
+
 Team Members:
+
 Shivangi Kumari - Cochin University of Science and Technology, School of Engineering (SOE)
 Shruti Suman - Cochin University of Science and Technology, School of Engineering (SOE)
 Mehga Rani - Cochin University of Science and Technology, School of Engineering (SOE)
