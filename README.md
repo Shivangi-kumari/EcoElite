@@ -47,6 +47,9 @@ http://localhost/EcoElite/
 
 Project Documentation
 [documentation.pdf](https://github.com/user-attachments/files/18548697/documentation.pdf)
+Requirement: ADMIN USERNAME:Manager
+ADMIN PASSWORD: Password123
+
 Screenshots
 1. Homepage
    [homepage](https://github.com/user-attachments/assets/67973474-356d-4448-859d-627ff5fd6a90)
@@ -71,4 +74,4 @@ Shivangi Kumari: Designed and styled the user interface using HTML and CSS.
 
 Shruti Suman: Developed backend functionality using PHP and database integration for scheduling and request management.
 
-Mehga Rani: Built JavaScript-based features for interactivity and implemented Chart.js for waste tracking.
+Mehga Rani: Built JavaScript-based features for interactivity and implemented for waste tracking.
