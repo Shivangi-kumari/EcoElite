@@ -82,8 +82,8 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`id`, `name`, `email`, `phone`, `waste_type`, `location`, `status`, `created_at`, `user_id`) VALUES
-(2, 'Shruti Suman', 'abcd@gmail.com', '0236753549', 'recycling', '51.50242705505877,-0.1028594991657883', 'accepted', '2025-01-25 22:14:15', 1),
-(5, 'Suman', 'megha@gmail.com', '0267543644', 'recycling', '51.49678515906574,-0.05400467023719103', 'pending', '2025-01-25 23:09:24', 1);
+(2, 'Shruti Suman', 'abcd@gmail.com', '07667543579', 'recycling', '51.50242705505877,-0.1028594991657883', 'accepted', '2025-01-25 22:14:15', 1),
+(5, 'Suman', 'megha@gmail.com', '07667543579', 'recycling', '51.49678515906574,-0.05400467023719103', 'pending', '2025-01-25 23:09:24', 1);
 
 -- --------------------------------------------------------
 
@@ -154,4 +154,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
