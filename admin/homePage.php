@@ -1,3 +1,48 @@
+<?php
+include("../connection.php");
+
+// Accept a request (change status to 'Accepted')
+function acceptRequest($r_id) {
+    global $connect;
+    $query = "UPDATE requests SET status = 'Accepted' WHERE id = ?";
+    $stmt = $connect->prepare($query);
+    $stmt->bind_param("i", $r_id); // 'i' means integer type
+    if ($stmt->execute()) {
+        echo "Request has been accepted successfully.";
+    } else {
+        echo "Error updating request status.";
+    }
+    $stmt->close();
+}
+
+// Delete a request (remove from database)
+function deleteRequest($r_id) {
+    global $connect;
+    $query = "DELETE FROM requests WHERE id = ?";
+    $stmt = $connect->prepare($query);
+    $stmt->bind_param("i", $r_id); // 'i' means integer type
+    if ($stmt->execute()) {
+        echo "Request has been deleted successfully.";
+    } else {
+        echo "Error deleting request.";
+    }
+    $stmt->close();
+}
+
+// Example of handling AJAX requests
+if (isset($_GET['action']) && isset($_GET['id'])) {
+    $r_id = $_GET['id'];
+    $action = $_GET['action'];
+
+    if ($action == 'accept') {
+        acceptRequest($r_id);
+    } elseif ($action == 'delete') {
+        deleteRequest($r_id);
+    }
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,147 +52,78 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <nav>
-        <a href="homePage.php">Home</a>
-        <a href="../index.php">Logout</a>
-    </nav>
-    <header>
-        <h1>Service Provider Dashboard</h1>
-    </header>
-    <main>
-        <h2>Waste Collection Requests</h2>
-        <div id="requests-container"></div>
 
-        <h2>Suggestions</h2>
-        <div id="messages-container" class="message-container"></div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Waste Management Platform</p>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const requestContainer = document.getElementById('requests-container');
-            const messagesContainer = document.getElementById('messages-container');
-    
-            // Fetch and display waste collection requests from the database
-            async function fetchRequests() {
-                try {
-                    const response = await fetch('fetch_requests.php');
-                    const requests = await response.json();
-                    displayRequests(requests);
-                } catch (error) {
-                    console.error('Error fetching requests:', error);
-                }
-            }
-            // Fetch and display suggestions
-            async function fetchSuggestions() {
-                try {
-                    const response = await fetch('fetch_suggestions.php');
-                    const suggestions = await response.json();
-                    displaySuggestions(suggestions);
-                } catch (error) {
-                    console.error('Error fetching suggestions:', error);
-                }
-            }
-    
-            async function renderRequest(request, index) {
-                const { name, email, phone, wasteType, location, status } = request; // Include status
-                console.log(`Rendering request for ${name} with status: ${status}`); // Debug log
+<nav class="navbar">
+    <div class="logo">EcoElite</div>
+    <ul class="nav-links">
+        <li><a href="homePage.php">Home</a></li>
+        <li><a href="../index.php">Logout</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h2 class="text-center" style="color:white; margin-bottom: 30px; font-weight:700;">Welcome to Admin Dashboard</h2>
 
-    
-                return `<div class="request-container">
-                            <div class="request-details">
-                                <p><strong>Name:</strong> ${name}</p>
-                                <p><strong>Email:</strong> ${email}</p>
-                                <p><strong>Phone:</strong> ${phone}</p>
-                                <p><strong>Waste Type:</strong> ${wasteType}</p>
-                                <p><strong>Location:</strong> ${location}</p>
-                            </div>
-                            <div class="actions">
-                                ${status === 'pending' ? `
-                                    <button class="btn btn-accept" onclick="handleAccept('${email}')">Accept</button>
-                                    <button class="btn btn-delete" onclick="handleDelete('${email}')">Delete</button>
-                                ` : `
-                                    <span class="accepted-message">Accepted</span>
-                                `}
-                            </div>
-                        </div>`;
-            }
-    
-            async function displayRequests(requests) {
-                if (requests.length === 0) {
-        requestContainer.innerHTML = '<p>No waste collection requests available.</p>';
-        return;
-    }
-                const requestPromises = requests.map((request, index) => renderRequest(request, index));
-                const requestsHtml = await Promise.all(requestPromises);
-                requestContainer.innerHTML = requestsHtml.join('');
-            }
-            async function renderSuggestion(suggestion) {
-                const { name, email, message } = suggestion;
-                return `<div class="message-container">
-                            <p><strong>Name:</strong> ${name}</p>
-                            <p><strong>Email:</strong> ${email}</p>
-                            <p><strong>Message:</strong> ${message}</p>
-                        </div>`;
-            }
+    <div class="card-container">
+        <!-- Pending Requests Card -->
+        <div class="card">
+            <div class="card-header">Pending Requests</div>
+            <div id="requests-container">
+                <?php
+                // Fetch requests with status "Pending"
+                $query = "SELECT * FROM requests WHERE status = 'Pending'";
+                $result = $connect->query($query);
+                
+                if ($result && $result->num_rows > 0) {
+                    // Iterate through the results and display them
+                    while ($request = $result->fetch_assoc()) {
+                        $r_id = $request['id'];
+                        
+                        echo "<div class='request-card'>";
+                        echo "<h4>" . htmlspecialchars($request['name']) . "</h4>";
+                        echo "<p><strong>Email:</strong> " . htmlspecialchars($request['email']) . "</p>";
+                        echo "<p><strong>Phone:</strong> " . htmlspecialchars($request['phone']) . "</p>";
+                        echo "<p><strong>Waste Type:</strong> " . htmlspecialchars($request['waste_type']) . "</p>";
+                        echo "<p><strong>Location:</strong> " . htmlspecialchars($request['location']) . "</p>";
+                        echo "<button class='btn-accept' onclick=\"handleAction('accept', '".$request['id']."')\">Accept</button>";
+                        echo "<button class='btn-delete' onclick=\"handleAction('delete', '".$request['id']."')\">Delete</button>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>No pending requests found.</p>";
+                }
+                ?>
+            </div>
+        </div>
 
-            async function displaySuggestions(suggestions) {
-                if (suggestions.length === 0) {
-        messagesContainer.innerHTML = '<p>No suggestions available.</p>';
-        return;
-    }
-                const suggestionPromises = suggestions.map(suggestion => renderSuggestion(suggestion));
-                const suggestionsHtml = await Promise.all(suggestionPromises);
-                messagesContainer.innerHTML = suggestionsHtml.join('');
-            }
-    
-            window.handleAccept = function(email) {
-                if (confirm('Are you sure you want to accept this request?')) {
-                    // Call a PHP script to update the request status in the database
-                    fetch('accept_request.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `email=${encodeURIComponent(email)}`
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        alert(data); // Show success or error message
-                        location.reload(); // Reload the page to reflect changes
-                    })
-                    .catch(error => {
-                        console.error('Error accepting request:', error);
-                    });
+        <!-- Suggestions Card -->
+        <div class="card">
+            <div class="card-header">Suggestions</div>
+            <div id="messages-container" class="message-container">
+                <?php
+                // Fetch all messages from the messages table
+                $messageQuery = "SELECT * FROM messages";
+                $messageResult = $connect->query($messageQuery);
+                
+                if ($messageResult && $messageResult->num_rows > 0) {
+                    // Iterate through the results and display them
+                    while ($message = $messageResult->fetch_assoc()) {
+                        echo "<div class='message-card'>";
+                        echo "<p><strong>From:</strong> " . htmlspecialchars($message['name']) . "</p>";
+                        echo "<p><strong>Email:</strong> " . htmlspecialchars($message['email']) . "</p>";
+                        echo "<p><strong>Message:</strong> " . nl2br(htmlspecialchars($message['message'])) . "</p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>No suggestions found.</p>";
                 }
-            };
-    
-            window.handleDelete = function(email) {
-                if (confirm('Are you sure you want to delete this request?')) {
-                    // Call a PHP script to delete the request from the database
-                    fetch('delete_request.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `email=${encodeURIComponent(email)}`
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        alert(data); // Show success or error message
-                        location.reload(); // Reload the page to reflect changes
-                    })
-                    .catch(error => {
-                        console.error('Error deleting request:', error);
-                    });
-                }
-            };
-    
-            fetchRequests(); // Fetch requests when the page loads
-            fetchSuggestions();
-        });
-    </script>
-    </body>
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Waste Management Platform</p>
+</footer>
+<script src="actions.js"></script>
     </html>
