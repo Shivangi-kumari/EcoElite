@@ -79,7 +79,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                         $r_id = $request['id'];
                         
                         echo "<div class='request-card'>";
-                        echo "<h4>" . htmlspecialchars($request['name']) . "</h4>";
+                        echo "<h4><strong>Name:</strong> " . htmlspecialchars($request['name']) . "</h4>";
                         echo "<p><strong>Email:</strong> " . htmlspecialchars($request['email']) . "</p>";
                         echo "<p><strong>Phone:</strong> " . htmlspecialchars($request['phone']) . "</p>";
                         echo "<p><strong>Waste Type:</strong> " . htmlspecialchars($request['waste_type']) . "</p>";
