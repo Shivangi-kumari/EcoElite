@@ -1,16 +1,17 @@
 <?php
-// Start session and check if the user is logged in
 session_start();
+
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location:user_login.php'); // Redirect to login if not logged in
-    exit;
+    // Redirect to login page if the user is not logged in
+    header("Location: userLogin.php");
+    exit();
 }
 
+// Retrieve session variables
+$user_id = $_SESSION['user_id'];
 // Include the database connection
 include("../connection.php"); 
-
-// Fetch data for the logged-in user
-$user_id = $_SESSION['user_id'];
 
 // Query to fetch counts of accepted and pending requests
 $query_accepted = "SELECT COUNT(*) AS count FROM requests WHERE user_id = '$user_id' AND status = 'Accepted'";
@@ -23,12 +24,7 @@ $result_pending = mysqli_query($connect, $query_pending);
 $accepted_count = ($result_accepted && mysqli_num_rows($result_accepted) > 0) ? mysqli_fetch_assoc($result_accepted)['count'] : 0;
 $pending_count = ($result_pending && mysqli_num_rows($result_pending) > 0) ? mysqli_fetch_assoc($result_pending)['count'] : 0;
 
-// Logout logic
-if (isset($_GET['logout'])) {
-    session_destroy();
-    header('Location: login.php');
-    exit;
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +38,12 @@ if (isset($_GET['logout'])) {
 </head>
 <body>
 <nav class="navbar">
-    <div class="navbar-brand">EcoElite</div>
+    <div class="logo">EcoElite</div>
     <ul class="nav-links">
-        <li><a href="index.php">Home</a></li>
+        <li><a href="homePage.php">Home</a></li>
         <li><a href="schedule.php">Schedule</a></li>
         <li><a href="contact.php">Contact</a></li>
-        <li><a href="?logout=true">Logout</a></li>
+        <li><a href="../index.php">Logout</a></li>
     </ul>
 </nav>
     <div class="container">
@@ -82,5 +78,8 @@ if (isset($_GET['logout'])) {
         </div>
 
     </div>
+    <footer>
+        <p>&copy; 2024 Waste Management Platform</p>
+    </footer>
 </body>
 </html>
