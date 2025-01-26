@@ -1,17 +1,5 @@
 <?php
-$host = 'localhost'; // Database host
-$db = 'waste_management'; // The name of your database
-$user = 'root'; // Your database username
-$pass = ''; // Your database password
-
-// Create connection
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include("../connection.php");
 // Fetch all contact submissions
 $sql = "SELECT name, email, message FROM contacts"; // Fetch only the necessary fields
 $result = $conn->query($sql);
