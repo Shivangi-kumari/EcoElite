@@ -28,7 +28,7 @@ VS Code
 GitHub
 Installation:
 1. Clone the repository:
-git clone https://github.com/your-repo-link.git
+git clone https://github.com/Shivangi-kumari/EcoElite.git
 2. Move into the project directory:
 cd EcoElite
 3. Set up a local server (e.g., XAMPP or WAMP).
