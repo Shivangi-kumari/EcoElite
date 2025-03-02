@@ -10,9 +10,7 @@ Shruti Suman - Cochin University of Science and Technology, School of Engineerin
 
 Mehga Rani - Cochin University of Science and Technology, School of Engineering (SOE)
 
-Hosted Project Link:
 
-[Add your project hosted link here]
 
 Project Description
 
@@ -26,7 +24,7 @@ The Solution
 Technical DetailsTechnologies/Components Used
 For Software:
 Languages Used: HTML, CSS, JavaScript, PHP
-Frameworks Used: None (or mention if applicable)
+
 Libraries Used:
 Bootstrap (for responsive design)
 Chart.js (for tracking waste management progress)
@@ -63,15 +61,3 @@ Diagrams
 3. schematic
 4. ![schematic](https://github.com/user-attachments/assets/f5e87ca7-2c35-40d2-bf2e-24b623fbcea5)
 
-Project Demo
-
-Video:
-[Add your demo video link here]
-Description: This video demonstrates the platform's features, including waste scheduling, tracking, and service provider management.
-Team Contributions
-
-Shivangi Kumari: Designed and styled the user interface using HTML and CSS.
-
-Shruti Suman: Developed backend functionality using PHP and database integration for scheduling and request management.
-
-Mehga Rani: Built JavaScript-based features for interactivity and implemented for waste tracking.
