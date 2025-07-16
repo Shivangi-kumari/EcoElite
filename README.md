@@ -50,7 +50,8 @@ ADMIN PASSWORD: Password123
 
 Screenshots
 1. Homepage
-   [homepage](https://github.com/user-attachments/assets/67973474-356d-4448-859d-627ff5fd6a90)
+  <img width="1114" height="866" alt="Screenshot 2025-07-16 190902" src="https://github.com/user-attachments/assets/a7783c74-936d-4917-8b89-80f3e0a848d0" />
+
 2. User Dashboard![user_dashboard](https://github.com/user-attachments/assets/8711f997-065e-48ea-a18e-af7a9ca76ebf)
 3.Admin Panel [Admin Panel]![admin panel echoelite](https://github.com/user-attachments/assets/4880d998-4629-4388-8b64-b68d028d4979)
 
